@@ -33,6 +33,11 @@ public class StateMachine : MonoBehaviour
     void Update()
     {
         currentState.machineUpdate();
+
+        if (Input.GetButtonDown ("Game_Escape"))
+        {
+            Application.Quit ();
+        }
     }
 
 
