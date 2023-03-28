@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class Grounded : Movement
 {
-    // Start is called before the first frame update
-    protected override void Start()
+    public float jumpHeight = 1;
+    public float walkSpeed = 1;
+
+
+    [SerializeField] private Transform groundPoint;
+    [SerializeField] private LayerMask groundLayer;
+
+    public override bool Check()
     {
-        base.Start();
+        return Physics2D.OverlapCircle(groundPoint.position, 0.2f, groundLayer);
     }
 
     // Update is called once per frame
     public override void machineUpdate()
     {
-        base.machineUpdate();
-        if (ButtonUp(Buttons.Button6))
+        if (ButtonDown(Buttons.Button5))
         {
-            rb.AddForce(Vector3.up * 5, ForceMode2D.Impulse);
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
         }
+
+        float inputX = ButtonAxis(Buttons.Horizontal);
+        rb.velocity = new Vector2(inputX * walkSpeed, rb.velocity.y);
+
+
+        base.machineUpdate ();
     }
+
 }

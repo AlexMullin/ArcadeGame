@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-
     protected Rigidbody2D rb;
     
     static string[,] inputs = new string[2, 8]
@@ -16,10 +15,10 @@ public class Movement : MonoBehaviour
     protected enum Buttons { Horizontal, Vertical, Button1, Button2, Button3, Button4, Button5, Button6};
 
     protected StateMachine machine;
-    public Movement stateChecks;
+    [SerializeField] public Movement[] stateChecks;
 
-    //I want to use the same script for both player 1 and 2. Set by 
-    public int player;
+    //I want to use the same script for both player 1 and 2. Set by
+    int player = 0;
 
 
     //There's an annoying amount of writing with this system for p1/p2 so these funcitons call the input functions correctly (I hope)
@@ -46,12 +45,12 @@ public class Movement : MonoBehaviour
 
     public virtual void Enter()
     {
-
+        enabled = true;
     }
 
     public virtual void Exit()
     {
-
+        enabled = false;
     }
 
     //Returns true if the input required to enter this state is checked.
@@ -60,22 +59,51 @@ public class Movement : MonoBehaviour
         return false;
     }
 
+    public void checkStates()
+    {
+        foreach(Movement i in stateChecks)
+        {
+            if (i.Check())
+            {
+                Debug.Log(i);
+                machine.transitionState(i);
+                break;
+            }
+        }
+    }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        enabled = false;
     }
 
     //called by stateMachine for movement code. Collects input in the base class.
     public virtual void machineUpdate()
     {
+        checkStates ();
+    }
+    
+    public virtual void fixedMachineUpdate()
+    {
 
     }
-
 
     public void setMachine(StateMachine s)
     {
         machine = s;
         player = (int)s.Player;
+    }
+
+    //Point detection for things 
+    protected bool checkPoint (Transform p, float size, LayerMask mask)
+    {
+        
+        return Physics2D.OverlapCircle (p.position, size, mask) != null;
+    }
+    protected bool checkPoint (Transform p)
+    {
+        return Physics2D.OverlapCircle (p.position, 0.02f, LayerMask.GetMask("Ground")) != null;
     }
 }
