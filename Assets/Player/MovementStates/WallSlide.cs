@@ -17,11 +17,47 @@ public class WallSlide : Movement
     [SerializeField] private float wallJumpX = 1;
     [SerializeField] private float wallJumpY = 1;
 
+
+    public float playerJumpBuffer = 0.25f;
+    private bool playerTouching = false;
+    private bool timerTrigger = true; //so we don't run the coroutine hundreds of times per
+
+    //If the players begin touching, set player touching to true.
+    //When this condition is no longer true, set playerTouching to no longer be true AFTER 0.5 seconds.
+
+    void updateTouch ()
+    {
+        //if players are touching: 
+        if (checkPoint(pointWallLeft, playerTarget) || checkPoint(pointWallRight, playerTarget))
+        {
+            playerTouching = true;
+        }
+
+        //If they have stopped touching: 
+        else if (playerTouching && timerTrigger)
+        {
+            StartCoroutine (jumpBufferTimer (playerJumpBuffer));
+        }
+    }
+
+    IEnumerator jumpBufferTimer (float t)
+    {
+        timerTrigger = false;
+        yield return new WaitForSeconds (t);
+
+        playerTouching = false;
+        timerTrigger = true;
+    }
+
     bool checkWall (Transform point)
     {
-        return 
-            Physics2D.OverlapCircle (point.position, 0.02f, groundLayer) != null ||
-            Physics2D.OverlapCircle (point.position, 0.02f, playerLayer) != null
+
+        return
+            (checkPoint (point) ||
+            checkPoint (point, playerTarget))
+            
+            ; 
+        //Todo: Add a timer to add leniency to players jumping off each other
             ;
     }
 
@@ -29,23 +65,34 @@ public class WallSlide : Movement
     {
         return (
             (
-                (ButtonAxis (Buttons.Horizontal) < 0 && checkWall (pointWallLeft)) ||
-                (ButtonAxis (Buttons.Horizontal) > 0 && checkWall (pointWallRight)) 
+                ((ButtonAxis (Buttons.Horizontal) < 0 && checkWall (pointWallLeft)) ||
+                (ButtonAxis (Buttons.Horizontal) > 0 && checkWall (pointWallRight)) )
+
+                || playerTouching == true //Accounts for the buffer between players walljumping
             )
             );
     }
     public override void Enter ()
     {
         base.Enter ();
+
+    }
+    public override void Exit ()
+    {
+        base.Exit ();
+        playerTouching = false;
+        timerTrigger = true;
     }
 
     public override void machineUpdate ()
     {
+        updateTouch ();
         Vector2 direction = Vector2.zero;
         
 
         if (ButtonPressed (Buttons.Button5))
         {
+            playerTouching = false;
 
             direction.x = -ButtonAxis (Buttons.Horizontal) * wallJumpX;
             direction.y = wallJumpY;

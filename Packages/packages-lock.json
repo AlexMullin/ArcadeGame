@@ -145,6 +145,7 @@
         "com.unity.modules.unitywebrequest": "1.0.0",
         "com.unity.nuget.newtonsoft-json": "3.0.2",
         "com.unity.modules.androidjni": "1.0.0"
+<<<<<<< Updated upstream
       },
       "url": "https://packages.unity.com"
     },
@@ -161,6 +162,8 @@
       "source": "registry",
       "dependencies": {
         "com.unity.sysroot": "2.0.5"
+=======
+>>>>>>> Stashed changes
       },
       "url": "https://packages.unity.com"
     },
