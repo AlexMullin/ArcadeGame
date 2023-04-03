@@ -63,6 +63,11 @@ public class Movement : MonoBehaviour
         return false;
     }
 
+    public virtual bool checkCarry()
+    {
+        return false;
+    }
+
     public void checkStates()
     {
         foreach(Movement i in stateChecks)

@@ -7,17 +7,19 @@ public class EndDoor : MonoBehaviour
 {
     public string nextlevelToLoad;
     public List<GameObject> collisions;
+
+    public float nextLevelDelay = 1.0f;
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag == "Player")
         {
             collisions.Add(collision.gameObject);
             if (collisions.Count == 2)
             {
                 
 
-                StartCoroutine(EndRoutine(3)); //3 is temp
+                StartCoroutine(EndRoutine(nextLevelDelay)); //3 is temp
             }
         }
     }
