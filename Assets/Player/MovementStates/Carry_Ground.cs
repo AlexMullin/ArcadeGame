@@ -7,7 +7,7 @@ public class Carry_Ground : Movement
     [SerializeField] Transform groundPoint;
 
     Grounded movementGround;
-
+    public float jumpMod = 1;
 
     bool throwRight = true;
 
@@ -34,16 +34,14 @@ public class Carry_Ground : Movement
 
     public override void machineUpdate ()
     {
-        float InputY = rb.velocity.y;
         if (ButtonDown (Buttons.Button5))
         {
-            //rb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
-            InputY = jumpHeight;
+            rb.AddForce (Vector3.up * jumpHeight * jumpMod, ForceMode2D.Impulse);
+
         }
 
-
         float inputX = ButtonAxis (Buttons.Horizontal);
-        rb.velocity = new Vector2 (inputX * walkSpeed, InputY * 1.4f);
+        rb.velocity = new Vector2 (inputX * walkSpeed, rb.velocity.y);
 
         if (inputX > 0) throwRight = true;
         else if (inputX < 0) throwRight = false;

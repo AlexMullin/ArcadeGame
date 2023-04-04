@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 8681089800474504122}
   - component: {fileID: 1841078977794404654}
   - component: {fileID: 6515503868441300336}
+  - component: {fileID: 1610605568392040939}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -416,7 +417,7 @@ MonoBehaviour:
   - {fileID: 6515503868441300336}
   groundPoint: {fileID: 2006565728547180980}
   driftSpeed: 3
-  driftChange: 1
+  driftChange: 5
 --- !u!114 &6515503868441300336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,6 +433,27 @@ MonoBehaviour:
   stateChecks:
   - {fileID: 1841078977794404654}
   groundPoint: {fileID: 2006565728547180980}
+  jumpMod: 2
+--- !u!114 &1610605568392040939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975170722083948180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740aadb831b9d9d4cbd37a3095b2f3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  layerMaskToIgnore:
+    serializedVersion: 2
+    m_Bits: 201
+  maxDist: 5
+  minDist: 1
+  postGrappleBounce: 1
+  bounceForce: 3
 --- !u!1 &4555786412571516237
 GameObject:
   m_ObjectHideFlags: 0

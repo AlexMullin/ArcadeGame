@@ -17,15 +17,14 @@ public class Grounded : Movement
     // Update is called once per frame
     public override void machineUpdate()
     {
-        float InputY = rb.velocity.y;
         if (ButtonDown(Buttons.Button5))
         {
-            //rb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
-            InputY = jumpHeight;
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
+            
         }
 
         float inputX = ButtonAxis(Buttons.Horizontal);
-        rb.velocity = new Vector2(inputX * walkSpeed, InputY);
+        rb.velocity = new Vector2(inputX * walkSpeed, rb.velocity.y);
 
 
         base.machineUpdate ();
