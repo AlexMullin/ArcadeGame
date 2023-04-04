@@ -9,9 +9,7 @@ public class CameraMovement : MonoBehaviour
     public GameObject player1, player2;
 
 
-    [SerializeField] float 
-        minSize = 5, 
-        minSizeDistance = 10;
+    [SerializeField] float minSize = 5;
 
     private void Start ()
     {
@@ -27,7 +25,7 @@ public class CameraMovement : MonoBehaviour
         float testSize = (player1.transform.position - player2.transform.position).magnitude / 2;
         Debug.Log (testSize);
 
-        cam.orthographicSize = testSize > 5 ? testSize : 5;
+        cam.orthographicSize = testSize > minSize ? testSize : minSize;
 
         transform.position = position;
     }

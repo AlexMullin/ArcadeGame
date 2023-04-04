@@ -22,6 +22,12 @@ public class Carried : Movement
         base.Enter ();
     }
 
+    public override void Exit ()
+    {
+        transform.parent = null;
+        base.Exit ();
+    }
+
     public override void machineUpdate ()
     {
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public class WallCling : Movement
 {
     [SerializeField] private Transform cornerLeft, cornerRight, cornerLeftB, cornerRightB;
-    [SerializeField] private float jumpHeight = 5;
 
     [SerializeField] float timer;
     private bool grabEnabled = true;

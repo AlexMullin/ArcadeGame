@@ -6,6 +6,8 @@ public class Movement : MonoBehaviour
 {
     protected Rigidbody2D rb;
 
+    public float walkSpeed, jumpHeight;
+
     static string[,] inputs = new string[2, 8]
     {
         {"P1_Horizontal", "P1_Vertical", "P1_Button1", "P1_Button2", "P1_Button3", "P1_Button4", "P1_Button5", "P1_Button6"},

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Carry_Ground : Movement
 {
-
     public override bool Check ()
     {
         return base.Check ();
@@ -17,7 +16,10 @@ public class Carry_Ground : Movement
 
     public override void machineUpdate ()
     {
-
+        if (ButtonDown (Buttons.Button5))
+        {
+            rb.AddForce (Vector3.up * jumpHeight, ForceMode2D.Impulse);
+        }
 
         base.machineUpdate ();
     }

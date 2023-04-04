@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Grounded : Movement
 {
-    public float jumpHeight = 1;
-    public float walkSpeed = 1;
 
 
     [SerializeField] private Transform groundPoint;
