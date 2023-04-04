@@ -63,6 +63,8 @@ public class Movement : MonoBehaviour
         return false;
     }
 
+    //Return false unless you're in the Air or Groudned state.
+    //Called by the statemachine
     public virtual bool checkCarry()
     {
         return false;
@@ -118,7 +120,7 @@ public class Movement : MonoBehaviour
     }
     protected bool checkPoint(Transform p, string layer)
     {
-        return Physics2D.OverlapCircle (p.position, 0.02f, LayerMask.GetMask (playerTarget)) != null ;
+        return Physics2D.OverlapCircle (p.position, 0.02f, LayerMask.GetMask (layer)) != null ;
     }
     protected bool checkPoint (Transform p)
     {

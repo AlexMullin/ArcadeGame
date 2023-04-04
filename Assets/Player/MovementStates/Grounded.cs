@@ -31,4 +31,9 @@ public class Grounded : Movement
         base.machineUpdate ();
     }
 
+
+    public override bool checkCarry ()
+    {
+        return true;
+    }
 }

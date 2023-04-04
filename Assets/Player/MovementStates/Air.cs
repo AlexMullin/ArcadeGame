@@ -42,4 +42,9 @@ public class Air : Movement
     {
         base.fixedMachineUpdate();
     }
+
+    public override bool checkCarry ()
+    {
+        return true;
+    }
 }
