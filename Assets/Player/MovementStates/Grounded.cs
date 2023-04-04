@@ -17,13 +17,15 @@ public class Grounded : Movement
     // Update is called once per frame
     public override void machineUpdate()
     {
+        float InputY = rb.velocity.y;
         if (ButtonDown(Buttons.Button5))
         {
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
+            //rb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
+            InputY = jumpHeight;
         }
 
         float inputX = ButtonAxis(Buttons.Horizontal);
-        rb.velocity = new Vector2(inputX * walkSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(inputX * walkSpeed, InputY);
 
 
         base.machineUpdate ();
@@ -33,5 +35,10 @@ public class Grounded : Movement
     public override bool checkCarry ()
     {
         return true;
+    }
+
+    public override void beginCarry ()
+    {
+       machine.transitionState(GetComponent<Carry_Ground>());
     }
 }

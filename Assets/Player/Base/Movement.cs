@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     protected Rigidbody2D rb;
 
-    public float walkSpeed, jumpHeight;
+    protected float walkSpeed = 3, jumpHeight = 5;
 
     static string[,] inputs = new string[2, 8]
     {
@@ -15,9 +16,10 @@ public class Movement : MonoBehaviour
     };
 
     protected enum Buttons { Horizontal, Vertical, Button1, Button2, Button3, Button4, Button5, Button6, playerLayer };
-    private string[] targetLayer = new string[2] { "Player2", "Player" };
+    private string[] targetLayer = new string[2] { "Player2", "Player1" };
 
-    protected string playerTarget = "Player2";
+    protected string playerTarget;
+    protected GameObject otherPlayer;
 
     protected StateMachine machine;
     [SerializeField] public Movement[] stateChecks;
@@ -72,6 +74,18 @@ public class Movement : MonoBehaviour
         return false;
     }
 
+    //After letting go of the other player, return to the normal state
+    //Applicable in Carry_Ground and Carry_Air
+    public virtual void returnFromThrow ()
+    {
+        return;
+    }
+
+    public virtual void beginCarry ()
+    {
+        return;
+    }
+
     public void checkStates()
     {
         foreach(Movement i in stateChecks)
@@ -111,6 +125,9 @@ public class Movement : MonoBehaviour
         //Don't question this it works because coding reasons
         playerTarget = targetLayer[player];
 
+        otherPlayer = GameObject.Find (playerTarget);
+
+        Debug.Log ("Otherplayer: " + otherPlayer.name);
         Debug.Log (gameObject.name + " " + playerTarget);
     }
 
@@ -128,4 +145,6 @@ public class Movement : MonoBehaviour
     {
         return Physics2D.OverlapCircle (p.position, 0.02f, LayerMask.GetMask("Ground")) != null;
     }
+
+    
 }

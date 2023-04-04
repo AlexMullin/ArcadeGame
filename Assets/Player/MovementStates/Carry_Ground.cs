@@ -4,21 +4,53 @@ using UnityEngine;
 
 public class Carry_Ground : Movement
 {
+    [SerializeField] Transform groundPoint;
+
+    Grounded movementGround;
+
+
+    bool throwRight = true;
+
+    protected override void Start ()
+    {
+        base.Start ();
+
+        movementGround = GetComponent<Grounded> ();
+    }
+    public override void Enter ()
+    {
+        
+        base.Enter ();
+    }
     public override bool Check ()
     {
-        return base.Check ();
+        return checkPoint (groundPoint, "Ground");
     }
 
-    public override bool checkCarry ()
+    public override void returnFromThrow ()
     {
-        return base.checkCarry ();
+        machine.transitionState (movementGround);
     }
 
     public override void machineUpdate ()
     {
+        float InputY = rb.velocity.y;
         if (ButtonDown (Buttons.Button5))
         {
-            rb.AddForce (Vector3.up * jumpHeight, ForceMode2D.Impulse);
+            //rb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
+            InputY = jumpHeight;
+        }
+
+
+        float inputX = ButtonAxis (Buttons.Horizontal);
+        rb.velocity = new Vector2 (inputX * walkSpeed, InputY * 1.4f);
+
+        if (inputX > 0) throwRight = true;
+        else if (inputX < 0) throwRight = false;
+
+        if (ButtonDown (Buttons.Button4))
+        {
+            otherPlayer.GetComponent<Carried> ().throwPlayer (throwRight);
         }
 
         base.machineUpdate ();

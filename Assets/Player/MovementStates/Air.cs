@@ -10,6 +10,7 @@ public class Air : Movement
     [SerializeField] float driftSpeed = 3;
     [SerializeField] float driftChange = 1;
 
+
     public override bool Check()
     {
         return !Physics2D.OverlapCircle(groundPoint.position, 0.2f, groundLayer);
@@ -46,5 +47,10 @@ public class Air : Movement
     public override bool checkCarry ()
     {
         return true;
+    }
+
+    public override void beginCarry ()
+    {
+        machine.transitionState(GetComponent<Carry_Air>());
     }
 }

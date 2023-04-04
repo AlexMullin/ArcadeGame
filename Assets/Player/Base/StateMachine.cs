@@ -11,7 +11,7 @@ public class StateMachine : MonoBehaviour
 
     //Movement staes related
     public Movement[] States;
-    Movement currentState;
+    public Movement currentState;
 
 
     // Start is called before the first frame update

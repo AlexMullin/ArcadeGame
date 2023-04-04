@@ -346,7 +346,6 @@ MonoBehaviour:
   player1: {fileID: 439809174}
   player2: {fileID: 1466525404}
   minSize: 5
-  minSizeDistance: 10
 --- !u!1 &1466525404 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3975170722083948180, guid: 5309d01567af58947abe9c6b86f3d9da, type: 3}
@@ -381,7 +380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5428880478372428739, guid: 5309d01567af58947abe9c6b86f3d9da, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 5428880478372428739, guid: 5309d01567af58947abe9c6b86f3d9da, type: 3}
       propertyPath: m_LocalPosition.z
