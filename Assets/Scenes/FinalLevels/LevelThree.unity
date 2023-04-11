@@ -512,6 +512,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 531398023}
     m_Modifications:
+    - target: {fileID: 7936092783016053499, guid: 40e87292ea3ef224badb0e09fcebc19e, type: 3}
+      propertyPath: nextlevelToLoad
+      value: TitleScreen
+      objectReference: {fileID: 0}
     - target: {fileID: 7936092783016053500, guid: 40e87292ea3ef224badb0e09fcebc19e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -790,6 +794,7 @@ GameObject:
   - component: {fileID: 444179863}
   - component: {fileID: 444179862}
   - component: {fileID: 444179861}
+  - component: {fileID: 444179864}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -863,6 +868,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &444179864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444179860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848cfdd00647d1540af413eafb962f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 1866168085}
+  player2: {fileID: 892048549}
+  minSize: 5
 --- !u!1 &476608196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,6 +2318,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1866168085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3975170722083948180, guid: 5309d01567af58947abe9c6b86f3d9da, type: 3}
+  m_PrefabInstance: {fileID: 546012404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2048097077
 GameObject:
   m_ObjectHideFlags: 0

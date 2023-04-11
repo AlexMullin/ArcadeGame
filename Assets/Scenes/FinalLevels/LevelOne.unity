@@ -505,6 +505,11 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!1 &113965275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3975170722083948180, guid: 5309d01567af58947abe9c6b86f3d9da, type: 3}
+  m_PrefabInstance: {fileID: 1258706791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &157792779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -911,6 +916,7 @@ GameObject:
   - component: {fileID: 444179863}
   - component: {fileID: 444179862}
   - component: {fileID: 444179861}
+  - component: {fileID: 444179864}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -984,6 +990,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &444179864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444179860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848cfdd00647d1540af413eafb962f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 997188506}
+  player2: {fileID: 113965275}
+  minSize: 5
 --- !u!1 &531398022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1193,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &997188506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3975170722083948180, guid: 5309d01567af58947abe9c6b86f3d9da, type: 3}
+  m_PrefabInstance: {fileID: 184206107}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1079011305
 GameObject:
   m_ObjectHideFlags: 0
